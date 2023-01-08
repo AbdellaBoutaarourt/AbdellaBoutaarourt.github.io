@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./../style.css">
+    <script src="./../js/profile.js" type="module"></script>
+    <title>my profile</title>
+</head>
+<body class="Profil">
+    <div class="navbar">
+        <a href="home.html" class="logo">Football leagues</a>
+        <div class="nav-links">
+          <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="topScorers.html">Players Stats</a></li>
+            <li class="login">
+                <a href="profile.html"><img src="./../pictures/user.png">Profile</a>
+                <a href="signIn.html" class="signout">Sign out</a>
+              </li>
+          </ul>
+        </div>
+      </div>
+
+
+        <h2 class="title" id="title">Profil :</h2>
+
+        <div class="profilcontainer" id="profilcontainer">
+          <h2 class="textprofil" id="textprofil">Username : </h2>
+            <h3 class="usenamestyle" id="usernamestyle"></h3>
+          
+            <h2 class="textprofil">Email : </h2>
+            <div class="EmailEdit">
+            <h3 class="emailnamestyle"id="emailstyle"></h3>
+             <i class="updateacc" id="updateacc"><img src="./../pictures/refresh.png" alt=""> change email</i>
+            </div>
+            <div class="emailInput" id="emailInput">
+
+            <form class="emailChangeForm" id="emailChangeForm">
+            <input type="text" class="emailInputForm" id="emailInputForm" name="email" placeholder="New email">
+            <button type="submit" class="submitEmailChange" id="submitEmailChange">Change email</button>
+
+            </form>
+            </div>
+
+            <h3 class="deleteacctext">Delete account</h3>
+            <div class="delete">
+                <button type="button" class="deleteaccbtn" id="deleteaccbtn">Delete</button>
+                <button type="button" class="deleteaccsure" id="deleteaccsure">Click here to confirm</button>
+            </div>
+
+            <h3 class="logouttext">Logout</h3>
+            <div class="disconnect">
+             <a href="signIn.html"> <button type="button" class="logoutacbtn" id="logoutacbtn" >Sign out</button></a>
+            </div>
+
+
+
+
+      </div>
+
+
+    
+</body>
+</html>

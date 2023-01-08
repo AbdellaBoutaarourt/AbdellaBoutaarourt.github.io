@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./../style.css">
+    <script src="./../js/register.js" type="module"></script>
+    <title>Register</title>
+</head>
+<body class="index">
+    <header>
+        <nav>
+            <p class="logo">Football league</p>
+        </nav>
+    </header>
+    <main>
+        <div class="mainFlex">
+            <section class="signUp">
+                <h2>Create account</h2>
+                <form id="signUpForm" class="signInForm">
+                    <div class="usernameForm">
+                        <label for="usernameForm">Username</label>
+                        <input type="text" id="usernameRegister" name="fname">
+                    </div>
+    
+                    <div class="emailFormsignUp">
+                        <label for="emailForm">Email</label>
+                        <input type="text" id="emailRegister" name="email">
+                    </div>
+    
+                    <div class="passwordFormsignUp">
+                        <label for="passwordForm">Password</label>
+                        <input type="password" id="passwordRegister" name="password">
+                    </div>
+                    <div class="passwordFormsignUp">
+                        <label for="passwordForm">Confirm password</label>
+                        <input type="password" id="passwordRegister2" name="password">
+                    </div>
+    
+                    <input type="submit" value="Sign up">
+                </form>
+                <p class='loginerror' id='error'></p>
+                <p class='loginerror' id='errorPassword' style="display:none;"> Password is not the same!</p>
+                <p class="already">Already registred ? <a href="signIn.html" class="signInbtn">Sign in</a></p>
+            </section>
+            <section id="fillerTextStart">
+                <div class="slider">
+                    <div class="slides">
+                        <div class="slide">
+                            <img src="./../pictures/PLAYERS.jpg">
+                        </div>
+                        <div class="slide">
+                            <img src="./../pictures/PLAYER3.jpeg">
+                        </div>
+                        <div class="slide">
+                            <img src="./../pictures/players1.jpg">
+                        </div>
+                    </div>
+                </div>
+                <p>Save your teams</p>
+                <p class="fillerText">put your team in favorites to know the news of the team and players.</p>
+            </section>
+        </div>
+    </main>
+    
+</body>
+</html>
