@@ -203,8 +203,16 @@ body {
   font-size: 20px;
 }
 .button{
-  background-color: #37003c;
+  background-color: #e4443e;
   color: #ffffff;
+  border:  none;
+  font-size: 25px;
+  padding: 0px 5px;
+}
+
+.button :hover{
+  cursor: pointer;
+  background-color: green;
 }
 
 

@@ -38,7 +38,7 @@ function buildList() {
     let teamID = s.team.id
     html += `   
     <tbody class="comp-table-body">
-    <button type="button" class= "button">add!</button>
+    <button type="button" class= "button">+</button>
     <tr class="team">
       <td class="rank">${s.rank}</td>
         <td class="team"> 
