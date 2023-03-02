@@ -6,11 +6,11 @@ import{
 
 let teams = []
 let standing = [];
-
+let user;
 
 window.onload = function getData() {
   //check sessionStorage
-let user = JSON.parse(sessionStorage.getItem('user'));
+ user = JSON.parse(sessionStorage.getItem('user'));
 
 document.getElementById('message').innerText = `Welcome ${user.username} !`
 
@@ -97,6 +97,7 @@ function favorite() {
       let teamID = s.team.id;
       let teamName = s.team.name;
       let teamLogo = s.team.logo;
+      let userID = user.uuid
 
       fetch('https://web-2-host-football.onrender.com/teams', {
         method: 'POST',
@@ -104,6 +105,7 @@ function favorite() {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
+          userID: userID,
           teamID : teamID,
           teamName : teamName,
           teamLogo : teamLogo
