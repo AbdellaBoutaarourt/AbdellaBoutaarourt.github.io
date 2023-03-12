@@ -127,10 +127,7 @@ function favorite() {
     document.getElementById('favorite').innerHTML += htmlString;
     })
   })
-}
-
-function getFavorites() {
-  const userID = user.uuid;
+  let userID = user.uuid
 
   fetch(`https://web-2-host-football.onrender.com/teams/${userID}`, {
     method: 'GET',
@@ -159,4 +156,5 @@ function getFavorites() {
     })
     .catch(error => console.error('Error:', error));
 }
+
 
