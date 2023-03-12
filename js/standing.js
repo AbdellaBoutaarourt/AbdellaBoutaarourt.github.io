@@ -26,6 +26,7 @@ document.getElementById('message').innerText = `Welcome ${user.username} !`
 
   setTimeout(buildList, 300)
   setTimeout(favorite, 300)
+  setTimeout(getFavorites, 300)
 }
 
 function buildList() {
@@ -128,4 +129,34 @@ function favorite() {
   })
 }
 
+function getFavorites() {
+  const userID = user.uuid;
+
+  fetch(`https://web-2-host-football.onrender.com/teams/${userID}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }).then(response => response.json())
+    .then(data => {
+      let favorites = data.favorites;
+      let htmlString = '';
+
+      favorites.forEach(favorite => {
+        let teamID = favorite.teamID;
+        let teamName = favorite.teamName;
+        let teamLogo = favorite.teamLogo;
+
+        htmlString += `
+        <div class="teams">
+          <ul>
+            <li><img src="${teamLogo}"> <a href="./teamInfo.html?id=${teamID}">${teamName}</a></li>
+          </ul>
+        </div>`;
+      });
+
+      document.getElementById('favorite').innerHTML = htmlString;
+    })
+    .catch(error => console.error('Error:', error));
+}
 
