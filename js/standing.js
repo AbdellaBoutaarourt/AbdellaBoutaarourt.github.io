@@ -98,13 +98,14 @@ function favorite() {
       let teamName = s.team.name;
       let teamLogo = s.team.logo;
       let userID = user.uuid
-
-      fetch('https://web-2-host-football.onrender.com/teams', {
+      if (favorite.teamID != teamID) {
+  fetch('https://web-2-host-football.onrender.com/teams', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
+
           userID: userID,
           teamID : teamID,
           teamName : teamName,
@@ -114,7 +115,6 @@ function favorite() {
         return data.json()
       })
       let htmlString = ""
-
       htmlString += `
 
       <div class="teams">
@@ -124,6 +124,8 @@ function favorite() {
       </div>`
 
     document.getElementById('favorite').innerHTML += htmlString;
+      };
+
     })
   })
   let userID = user.uuid
