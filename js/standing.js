@@ -26,7 +26,6 @@ document.getElementById('message').innerText = `Welcome ${user.username} !`
 
   setTimeout(buildList, 300)
   setTimeout(favorite, 300)
-  setTimeout(getFavorites, 300)
 }
 
 function buildList() {
@@ -37,12 +36,12 @@ function buildList() {
     let teamLogo = s.team.logo
     let teamName = s.team.name
     let teamID = s.team.id
-    html += `   
+    html += `
     <tbody class="comp-table-body">
     <button type="button" class= "button">+</button>
     <tr class="team">
       <td class="rank">${s.rank}</td>
-        <td class="team"> 
+        <td class="team">
             <img src="${teamLogo}">
             <span class="name-full"id=${teamID}>${teamName} </span>
         </td>
@@ -54,13 +53,13 @@ function buildList() {
         <td class="against">${s.all.goals.against}</td>
         <td class="difference">${s.goalsDiff}</td>
         <td class="form">
-        
+
           <li><a>${s.form[0]}</a></li>
           <li><a>${s.form[1]}</a></li>
           <li><a>${s.form[2]}</a></a></li>
           <li><a>${s.form[3]}</a></li>
           <li><a>${s.form[4]}</a></li>
-      
+
         </td>
         <td class="points">${s.points} </td>
         </tr>
@@ -68,7 +67,7 @@ function buildList() {
   }
   document.getElementById('comp-table-body').innerHTML = html;
   infoTeam()
-  
+
 }
 
 
@@ -84,7 +83,7 @@ function infoTeam() {
       const teamID = team.id;
       window.location.href = `./teamInfo.html?id=${teamID}`;
     })
-  })    
+  })
 }
 
 
@@ -117,13 +116,13 @@ function favorite() {
       let htmlString = ""
 
       htmlString += `
-    
+
       <div class="teams">
         <ul>
           <li><img src="${teamLogo}">  <a href="./teamInfo.html?id=${teamID}">${teamName}</a> </li>
         </ul>
       </div>`
-      
+
     document.getElementById('favorite').innerHTML += htmlString;
     })
   })
@@ -136,9 +135,8 @@ function favorite() {
     }
   }).then(response => response.json())
     .then(data => {
-      let favorites = data.favorites;
+      let favorites = data;
       let htmlString = '';
-
       favorites.forEach(favorite => {
         let teamID = favorite.teamID;
         let teamName = favorite.teamName;
@@ -152,7 +150,7 @@ function favorite() {
         </div>`;
       });
 
-      document.getElementById('favorite').innerHTML = htmlString;
+      document.getElementById('favorite').innerHTML += htmlString;
     })
     .catch(error => console.error('Error:', error));
 }
