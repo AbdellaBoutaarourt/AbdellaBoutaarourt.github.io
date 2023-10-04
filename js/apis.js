@@ -12,25 +12,25 @@ const key = {
   }
 
 async function standingFetch()  {
-   const response =  await fetch('https://v3.football.api-sports.io/standings?league=39&season=2022', key)
+   const response =  await fetch('https://v3.football.api-sports.io/standings?league=39&season=2023', key)
   const data = await response.json();
   return data
 }
 
 async function scorers()  {
-  const response =  await fetch('https://v3.football.api-sports.io/players/topscorers?league=39&season=2022', key)
+  const response =  await fetch('https://v3.football.api-sports.io/players/topscorers?league=39&season=2023', key)
  const data = await response.json();
  return data
 }
 
 async function passers()  {
-  const response =  await fetch('https://v3.football.api-sports.io/players/topassists?league=39&season=2022', key)
+  const response =  await fetch('https://v3.football.api-sports.io/players/topassists?league=39&season=2023', key)
  const data = await response.json();
  return data
 }
 
 async function stats()  {
-const response =  await fetch(`https://v3.football.api-sports.io/teams/statistics?league=39&season=2022&team=${teamID}`, key)
+const response =  await fetch(`https://v3.football.api-sports.io/teams/statistics?league=39&season=2023&team=${teamID}`, key)
  const data = await response.json();
  return data
 }
