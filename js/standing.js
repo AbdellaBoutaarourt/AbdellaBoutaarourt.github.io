@@ -8,6 +8,11 @@ let teams = []
 let standing = [];
 let user;
 
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const leagueID = urlParams.get('league')
+
+
 window.onload = function getData() {
   //check sessionStorage
  user = JSON.parse(sessionStorage.getItem('user'));
@@ -16,6 +21,7 @@ document.getElementById('message').innerText = `Welcome ${user.username} !`
 
   //fetch and render data
   standingFetch().then(data => {
+    console.log(data)
       teams = data.response[0].league.standings[0]
 
       teams.forEach(s => {
@@ -23,10 +29,23 @@ document.getElementById('message').innerText = `Welcome ${user.username} !`
       });
 
     })
+    let leagueTitle = data.response[0].league.name
+    let flag = data.response[0].league.flag
+    let htmlString = ""
+    htmlString == `
+    <div class="comp-title">
+    <img src= ${leagueTitle} class="comp-flag">
+    <h1 class="comp-name">${leagueTitle}</h1>
+     </div>
+    `
+
+    document.getElementsByClassName('comp-title').innerHTML== htmlString
 
   setTimeout(buildList, 300)
   setTimeout(favorite, 300)
+
 }
+
 
 function buildList() {
 
@@ -81,7 +100,7 @@ function infoTeam() {
       e.preventDefault();
 
       const teamID = team.id;
-      window.location.href = `./teamInfo.html?id=${teamID}`;
+      window.location.href = `./teamInfo.html?league=${leagueID}&id=${teamID}`;
     })
   })
 }

@@ -2,6 +2,7 @@
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const teamID = urlParams.get('id')
+const leagueID = urlParams.get('league');
 
 const key = {
     method: 'GET',
@@ -12,25 +13,25 @@ const key = {
   }
 
 async function standingFetch()  {
-   const response =  await fetch('https://v3.football.api-sports.io/standings?league=39&season=2023', key)
+   const response =  await fetch(`https://v3.football.api-sports.io/standings?league=${leagueID}&season=2023`, key)
   const data = await response.json();
   return data
 }
 
 async function scorers()  {
-  const response =  await fetch('https://v3.football.api-sports.io/players/topscorers?league=39&season=2023', key)
+  const response =  await fetch(`https://v3.football.api-sports.io/players/topscorers?league=${leagueID}&season=2023`, key)
  const data = await response.json();
  return data
 }
 
 async function passers()  {
-  const response =  await fetch('https://v3.football.api-sports.io/players/topassists?league=39&season=2023', key)
+  const response =  await fetch(`https://v3.football.api-sports.io/players/topassists?league=${leagueID}&season=2023`, key)
  const data = await response.json();
  return data
 }
 
 async function stats()  {
-const response =  await fetch(`https://v3.football.api-sports.io/teams/statistics?league=39&season=2023&team=${teamID}`, key)
+const response =  await fetch(`https://v3.football.api-sports.io/teams/statistics?league=${leagueID}&season=2023&team=${teamID}`, key)
  const data = await response.json();
  return data
 }

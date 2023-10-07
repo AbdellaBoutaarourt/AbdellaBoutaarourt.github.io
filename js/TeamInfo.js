@@ -5,10 +5,6 @@ import{
 } from './apis.js'
 
 
-const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
-const teamID = urlParams.get('id')
-
 let playercard = []
 
 
@@ -16,7 +12,7 @@ window.onload = function fetchInfo() {
 
   stats().then(data => {
       const team = data.response
-      
+
       let logo = team.team.logo
       let nameTeam = team.team.name
       let country = team.league.country
@@ -66,18 +62,18 @@ window.onload = function fetchInfo() {
       <span class= "country"> <ul>
       <li> country : ${country}  <img src=" ${flag}"> </li>
       <li> league : ${league}   <img src=" ${logoLeague}"> </li>
-      <li> season : 2022  </li>
+      <li> season : 2023 - 2024  </li>
       </ul>
-        </span> 
+        </span>
       </div>
-     
+
     `
       document.getElementById("header").innerHTML += htmlString;
 
-     
+
         let table = ''
 
-        table += `   
+        table += `
     <tr>
       <th></th>
       <th>HOME</th>
@@ -154,7 +150,7 @@ window.onload = function fetchInfo() {
   players()
 
   buttons()
- 
+
 }
 
 
@@ -187,7 +183,7 @@ function players() {
                 <div class="cardage"> age: ${card.age} </div>
                 <div class id="cardnumber"> ${card.number} </div>
               </div>
-            </div> 
+            </div>
             </div> `
           }
           document.getElementById('Goalkeepers').innerHTML = goalkeepers;
@@ -204,7 +200,7 @@ function players() {
                 <div class="cardage"> age: ${card.age} </div>
                 <div class id="cardnumber"> ${card.number} </div>
               </div>
-            </div> 
+            </div>
             </div> `
           }
           document.getElementById('Defenders').innerHTML = defenders;
@@ -221,7 +217,7 @@ function players() {
                 <div class ="cardage"> age: ${card.age} </div>
                 <div class id="cardnumber"> ${card.number} </div>
               </div>
-            </div> 
+            </div>
             </div> `
           }
           document.getElementById('Midfielders').innerHTML = midfielders;
@@ -238,12 +234,12 @@ function players() {
                 <div class ="cardage"> age: ${card.age} </div>
                 <div class id="cardnumber"> ${card.number} </div>
               </div>
-            </div> 
+            </div>
             </div> `
           }
           document.getElementById('Attackers').innerHTML = attackers;
 
-         
+
 
 
         }
@@ -265,8 +261,8 @@ document.getElementById("Statistics").addEventListener("click", () => {
     document.getElementById("players").style.display = "flex";
     document.getElementById("customers").style.display = "none";
     document.getElementById('squads').style.border ="solid #ffffff 3px"
-    document.getElementById('Statistics').style.border ="none" 
-    
+    document.getElementById('Statistics').style.border ="none"
+
   })
 
 

@@ -18,12 +18,12 @@ document.getElementById('signInForm').addEventListener('submit', event => {
         console.log(result.message)
 
         if (result.data) {
-            window.location.href = "./home.html";
+            window.location.href = "./choice.html";
 
         }else {
             document.getElementById('error').innerHTML = result.message
-            
+
         }
-        
+
     })
 })
