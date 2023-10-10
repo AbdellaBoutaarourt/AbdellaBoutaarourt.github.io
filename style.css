@@ -278,25 +278,21 @@ body {
   background-repeat: no-repeat;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  justify-content: space-between;
   width: 100%;
+  gap: 20%;
 }
 
 .end {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 50%;
   border-bottom: #ffffff solid 1px;
-  margin-bottom: 20px;
-  margin-right: 150px;
-  width: 60%;
+  width: 100%;
 }
 
 
 .footer .logo {
   opacity: 0.1;
-  width: 225px;
 }
 
 .links {
@@ -331,10 +327,6 @@ body {
   padding: 5px;
 }
 
-.social {
-  margin-right: 200px;
-
-}
 
 .social h2 {
   color: #ffffff;
@@ -342,8 +334,7 @@ body {
   font-size: medium;
   display: flex;
   justify-content: center;
-  position: relative;
-  bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .social img {
@@ -1223,6 +1214,57 @@ input[type=submit]:hover {
 
   }
 
+  .signUp{
+    padding: 0%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .signUp h2{
+    text-align: center;
+  }
+  #signUpForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .already{
+    text-align: center;
+  }
+  .loginerror{
+    text-align: center;
+  }
+  .signIn{
+    padding: 0%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .signIn h2{
+    text-align: center;
+  }
+  #signInForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .end{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .social {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    gap: 10px;
+  }
+  .social h2{
+    padding-right: 30px;
+  }
+  .social img {
+    width: 40px;
+  }
+
   }
 
   @media screen and (max-width: 480px) {
@@ -1239,6 +1281,7 @@ input[type=submit]:hover {
   }
   .fillerText{
     margin:0 5% 5% 5% ;
+    font-size: .8em;
   }
   .fillerText p{
     font-size: 0.8px;
@@ -1255,6 +1298,52 @@ input[type=submit]:hover {
     }
     #textStart{
       width: auto;
+    }
+
+    .signUp{
+      width: 100%;
+      padding: 0%;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .signUp h2{
+      text-align: center;
+    }
+    #signUpForm{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .already{
+      text-align: center;
+    }
+    .loginerror{
+      text-align: center;
+    }
+    .signIn h2{
+      text-align: center;
+    }
+    .signIn{
+      width: 100%;
+      padding: 0%;
+      justify-content: center;
+      align-items: center;
+    }
+    #signInForm{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .social {
+      flex-direction: column;
+      gap: 0;
+    }
+    .social h2{
+      margin-bottom: 15px;
+    }
+    .social img {
+      width: 25px;
     }
   }
 
