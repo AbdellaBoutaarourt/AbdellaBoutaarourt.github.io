@@ -103,7 +103,9 @@ body {
 .main {
   display: flex;
   padding: 50px;
-  padding-bottom: 100px;
+  justify-content: flex-start;
+  gap: 200px;
+
 }
 .main-players{
   padding: 50px;
@@ -115,9 +117,6 @@ body {
   font-weight: normal;
 }
 
-.favorite{
-  margin-right: 225px;
-}
 .favorite ul li a {
   text-decoration: none;
   color: #000000;
@@ -1173,6 +1172,10 @@ input[type=submit]:hover {
   }
 
 }
+.main {
+  gap: 100px;
+
+}
 }
 
 @media screen and (max-width: 800px) {
@@ -1263,7 +1266,34 @@ input[type=submit]:hover {
   .social img {
     width: 40px;
   }
+  .main {
+    flex-direction: column;
+  }
+  .comp-table th, .comp-table td {
+    text-align: center;
+    padding: 0 0.55em;
+    font-size: 20px;
+}
+.navbar {
+  padding: 20px 0px 15px 10px;
+  display: flex;
+  text-align: center;
+  align-items: center;
+}
+#message{
+  font-size: 10px;
+}
+.navbar .logo{
+  font-size: 1.2em;
+  width: 180px;
+}
+.navbar ul li a{
+  font-size: 10px;
+}
+.navbar ul li.active a{
+  font-size: 10px;
 
+}
   }
 
   @media screen and (max-width: 480px) {
@@ -1344,6 +1374,44 @@ input[type=submit]:hover {
     .social img {
       width: 25px;
     }
+    .comp-table th, .comp-table td {
+      font-size: 15px;
+  }
+
+  .navbar {
+    padding: 20px 0px 15px 10px;
+  }
+  #message{
+    font-size: 7px;
+  }
+  .navbar .logo{
+    font-size: 15px;
+    height: 50px;
+    width: 150px;
+  }
+  .navbar ul li a{
+    font-size: 10px;
+  }
+  .navbar ul li.active a{
+    font-size: 10px;
+
+  }
+  .navbar .nav-links ul {
+    align-items: center;
+  }
+  .navbar .nav-links ul li:not(:last-child) {
+    margin: 0 15px;
+}
+  .login{
+    margin-left: 10px;
+    margin-right: 0;
+  }
+  .navbar .nav-links img{
+    width: 15px;
+  }
+  .comp-title{
+    padding: 5px 20px;
+  }
   }
 
 
