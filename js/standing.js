@@ -74,11 +74,11 @@ function buildList() {
         <td class="difference">${s.goalsDiff}</td>
         <td class="form">
 
-          <li><a>${s.form[0]}</a></li>
-          <li><a>${s.form[1]}</a></li>
-          <li><a>${s.form[2]}</a></a></li>
-          <li><a>${s.form[3]}</a></li>
-          <li><a>${s.form[4]}</a></li>
+        <li class="${s.form[0]}"><a>${s.form[0]}</a></li>
+        <li class="${s.form[1]}"><a>${s.form[1]}</a></li>
+        <li class="${s.form[2]}"><a>${s.form[2]}</a></li>
+        <li class="${s.form[3]}"><a>${s.form[3]}</a></li>
+        <li class="${s.form[4]}"><a>${s.form[4]}</a></li>
 
         </td>
         <td class="points">${s.points} </td>
@@ -86,28 +86,13 @@ function buildList() {
       `
   }
   document.getElementById('comp-table-body').innerHTML = html;
-  infoTeam()
-
 }
 
 
-function infoTeam() {
-  //https://www.w3schools.com/js/js_window_location.asp
-  const teams = document.getElementsByClassName("name-full");
-  let teamsArray = [].slice.call(teams);
-  teamsArray.forEach(team => {
-    team.addEventListener("click", function (e) {
-      setTimeout(500)
-      e.preventDefault();
-
-      const teamID = team.id;
-      window.location.href = `./teamInfo.html?league=${leagueID}&id=${teamID}`;
-    })
-  })
-}
 
 
 function favorite() {
+  infoTeam()
   let userID = user.uuid
   fetch(`https://web-2-host-football.onrender.com/teams/${userID}`, {
       method: 'GET',
@@ -122,11 +107,13 @@ function favorite() {
         let teamID = favorite.teamID;
         let teamName = favorite.teamName;
         let teamLogo = favorite.teamLogo;
+        let leagueID = favorite.leagueID;
 
         htmlString += `
         <div class="teams">
           <ul>
-            <li><img src="${teamLogo}"> <a href="./teamInfo.html?id=${teamID}">${teamName}</a></li>
+            <li><img src="${teamLogo}"> <a href="./teamInfo.html?league=${leagueID}&id=${teamID}">${teamName}</a></li>
+            <i class="fa fa-trash deleteTeam" aria-hidden="true"></i>
           </ul>
         </div>`;
       });
@@ -135,6 +122,7 @@ function favorite() {
       console.log(favorites);
     })
     .catch(error => console.error('Error:', error));
+
   const buttons = document.getElementsByClassName("button");
   let buttonsArray = Array.from(buttons);
   buttonsArray.forEach((button, i) => {
@@ -144,6 +132,7 @@ function favorite() {
       let teamName = s.team.name;
       let teamLogo = s.team.logo;
       let userID = user.uuid
+      let leagueID  = urlParams.get('league');
 
       // Check if the team is already a favorite
       const isFavorite = favorites.some(favorite => favorite.teamID === teamID);
@@ -159,7 +148,8 @@ function favorite() {
             userID: userID,
             teamID: teamID,
             teamName: teamName,
-            teamLogo: teamLogo
+            teamLogo: teamLogo,
+            leagueID: leagueID
           })
         }).then(response => response.json())
       .then(responseData => {
@@ -181,6 +171,21 @@ function favorite() {
         document.getElementById('already').style.display = "flex";
       };
 
+    })
+  })
+}
+
+function infoTeam() {
+  //https://www.w3schools.com/js/js_window_location.asp
+  const teams = document.getElementsByClassName("name-full");
+  let teamsArray = [].slice.call(teams);
+  teamsArray.forEach(team => {
+    team.addEventListener("click", function (e) {
+      setTimeout(500)
+      e.preventDefault();
+
+      const teamID = team.id;
+      window.location.href = `./teamInfo.html?league=${leagueID}&id=${teamID}`;
     })
   })
 }

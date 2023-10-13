@@ -125,6 +125,9 @@ body {
 .favorite ul {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+
 }
 .favorite img{
   width:35px;
@@ -135,7 +138,13 @@ body {
   font-weight: 600;
   font-size: 15px;
   padding-left: 10px;
-
+  display: flex;
+  align-items: center;
+  transition: transform 0.3s;
+}
+.favorite li:hover{
+  transform: scale(1.2);
+  text-decoration: underline;
 }
 
 .favorite h2 {
@@ -151,11 +160,16 @@ body {
 
 .teams {
   border: solid #37003c 1px;
-  padding: 15px 50px;
+  border-bottom: none;
+  padding: 15px 30px;
+  padding-right: 10px;
   color: white;
   display: flex;
   flex-direction: column;
 
+}
+.teams:last-child{
+  border-bottom: solid #37003c 1px;
 }
 
 .container {
@@ -205,6 +219,17 @@ body {
   border:  none;
   font-size: 25px;
   padding: 0px 5px;
+}
+.deleteTeam{
+  color: #e4443e;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+.deleteTeam::before{
+  font-size: 20px;
+}
+.deleteTeam:hover{
+  transform: scale(2);
 }
 
 .button:hover{
@@ -257,9 +282,19 @@ body {
 
 .comp-table td.form li {
   list-style: none;
-  background-color: rgb(116, 234, 13);
   border-radius: 20%;
   margin: 1px;
+}
+.W {
+  background-color: rgb(116, 234, 13);
+}
+
+.L {
+  background-color: #e4443e;
+}
+
+.D {
+  background-color: #d2d2d2;
 }
 
 .comp-table td.form li a {
@@ -1294,6 +1329,9 @@ input[type=submit]:hover {
   font-size: 10px;
 
 }
+.comp-title{
+  padding: 5px 20px;
+}
   }
 
   @media screen and (max-width: 480px) {
@@ -1374,9 +1412,10 @@ input[type=submit]:hover {
     .social img {
       width: 25px;
     }
-    .comp-table th, .comp-table td {
-      font-size: 15px;
-  }
+  .comp-table th, .comp-table td {
+    padding: 0 0.30em;
+    font-size: 11px;
+}
 
   .navbar {
     padding: 20px 0px 15px 10px;
@@ -1412,6 +1451,13 @@ input[type=submit]:hover {
   .comp-title{
     padding: 5px 20px;
   }
+  .button{
+    font-size: 12px;
+    background-color: #37003c;
+    color: white;
+    font-family: "Poppins";
+  }
+
   }
 
 

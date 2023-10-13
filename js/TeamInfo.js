@@ -7,7 +7,6 @@ import{
 
 let playercard = []
 
-
 window.onload = function fetchInfo() {
 
   stats().then(data => {
@@ -150,12 +149,14 @@ window.onload = function fetchInfo() {
   players()
 
   buttons()
-
 }
-
+function goBack() {
+  window.history.back();
+}
 
 function players() {
     squad().then(data => {
+      console.log(data)
       let cards = data.response[0].players
 
       cards.forEach(card => {
@@ -246,6 +247,8 @@ function players() {
       })
 
     })
+    document.querySelector('a[href="#"]').addEventListener("click", goBack);
+
 }
 
 
@@ -264,6 +267,5 @@ document.getElementById("Statistics").addEventListener("click", () => {
     document.getElementById('Statistics').style.border ="none"
 
   })
-
 
 }
