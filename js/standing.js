@@ -35,7 +35,7 @@ window.onload = async function getData() {
 
   })
 
-  setTimeout(buildList, 300)
+  setTimeout(buildList, 500)
   setTimeout(favorite, 300)
 
 }
@@ -48,7 +48,17 @@ function buildList() {
     <h1 class="comp-name">${leagueTitle}</h1>
      </div>
     `
-
+    let htmlNav =  `<div class="nav-links">
+  <ul>
+    <li class="active"><a href="home.html?league=${leagueID}">Home</a></li>
+      <li><a href="topScorers.html?league=${leagueID}">Players Stats</a></li>
+    <li class="login">
+      <a href="profile.html"><img src="./../pictures/user.png">Profile</a>
+      <a href="signIn.html" class="signout">Sign out</a>
+    </li>
+  </ul>
+</div> `
+document.querySelector('.nav-links').innerHTML = htmlNav;
   document.querySelector('.comp-title').innerHTML = htmlTitle;
 
   let html = ''

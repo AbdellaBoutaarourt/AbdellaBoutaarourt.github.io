@@ -4,10 +4,26 @@ import{
   passers
 } from './apis.js'
 
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const leagueID = urlParams.get('league')
+
+
 window.onload = function getData() {
+  let htmlNav =  `<div class="nav-links">
+  <ul>
+    <li><a href="home.html?league=${leagueID}">Home</a></li>
+    <li class="active"><a href="topScorers.html?league=${leagueID}">Players Stats</a></li>
+    <li class="login">
+      <a href="profile.html"><img src="./../pictures/user.png">Profile</a>
+      <a href="signIn.html" class="signout">Sign out</a>
+    </li>
+  </ul>
+</div> `
+document.querySelector('.nav-links').innerHTML = htmlNav;
 
   scorers().then(data => {
-
+    console.log(data)
       let players = data.response
 
       players.forEach(player => {
@@ -15,7 +31,7 @@ window.onload = function getData() {
 
         htmlString += `
           <tr class="player">
-              <td class="team"> 
+              <td class="team">
                   <img src="${player.player.photo}">
                   <span class="name-full">${player.player.name}</span>
               </td>
@@ -24,7 +40,7 @@ window.onload = function getData() {
               <td class="played">${player.statistics[0].games.appearences}</td>
               <td class="goals">${player.statistics[0].goals.total}</td>
               </tr>
-         
+
         `
         document.getElementById("scorer").innerHTML += htmlString;
         document.getElementById("titels").style.display = "none";
@@ -32,7 +48,7 @@ window.onload = function getData() {
 
     })
   assist();
-  buttons();     
+  buttons();
 
 }
 
@@ -50,13 +66,13 @@ function assist() {
         </tr>
         `
       document.getElementById("titels").innerHTML += header;
-      
+
         players.forEach(player => {
           let html = ""
 
           html += `
             <tr class="player">
-                <td class="team"> 
+                <td class="team">
                     <img src="${player.player.photo}">
                     <span class="name-full">${player.player.name}</span>
                 </td>
@@ -65,7 +81,7 @@ function assist() {
                 <td class="played">${player.statistics[0].games.appearences}</td>
                 <td class="goals">${player.statistics[0].goals.assists}</td>
                 </tr>
-           
+
           `
           document.getElementById("assist").innerHTML += html;
           document.getElementById("assist").style.display = "none";
