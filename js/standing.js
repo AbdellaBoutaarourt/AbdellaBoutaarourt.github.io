@@ -36,7 +36,7 @@ window.onload = async function getData() {
   })
 
   setTimeout(buildList, 500)
-  setTimeout(favorite, 300)
+  setTimeout(favorite, 500)
 
 }
 
@@ -129,13 +129,13 @@ function favorite() {
       });
 
       document.getElementById('favorite').innerHTML += htmlString;
-      console.log(favorites);
     })
     .catch(error => console.error('Error:', error));
 
   const buttons = document.getElementsByClassName("button");
   let buttonsArray = Array.from(buttons);
   buttonsArray.forEach((button, i) => {
+
     button.addEventListener("click", function (e) {
       let s = standing[i];
       let teamID = s.team.id;
@@ -154,7 +154,6 @@ function favorite() {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-
             userID: userID,
             teamID: teamID,
             teamName: teamName,
@@ -190,10 +189,7 @@ function infoTeam() {
   const teams = document.getElementsByClassName("name-full");
   let teamsArray = [].slice.call(teams);
   teamsArray.forEach(team => {
-    team.addEventListener("click", function (e) {
-      setTimeout(500)
-      e.preventDefault();
-
+    team.addEventListener("click", function () {
       const teamID = team.id;
       window.location.href = `./teamInfo.html?league=${leagueID}&id=${teamID}`;
     })
