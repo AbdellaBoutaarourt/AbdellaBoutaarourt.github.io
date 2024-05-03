@@ -37,6 +37,10 @@ window.onload = async function getData() {
 
   setTimeout(buildList, 500)
   setTimeout(favorite, 500)
+  document.getElementById("centerButton").addEventListener("click", function() {
+    var centeredDiv = document.getElementById("already");
+    centeredDiv.style.display = "none";
+});
 
 }
 
@@ -177,6 +181,7 @@ function favorite() {
         })
 
       }else{
+        console.log("already in favorite")
         document.getElementById('already').style.display = "flex";
       };
 

@@ -8,7 +8,6 @@ I decided to create a premiere league site where users can search for their favo
 a top scorers and top assists table is also avalaible.
 
 # sites
-- Github frontend repository : https://github.com/EHB-MCT/web-2-frontend-22-23-AbdellaBoutaarourt
 - Github backend repository : https://github.com/EHB-MCT/web-2-backend-22-23-AbdellaBoutaarourt
 # sources
 
