@@ -37,10 +37,10 @@ window.onload = async function getData() {
 
   setTimeout(buildList, 500)
   setTimeout(favorite, 500)
-  document.getElementById("centerButton").addEventListener("click", function() {
+  document.getElementById("centerButton").addEventListener("click", function () {
     var centeredDiv = document.getElementById("already");
     centeredDiv.style.display = "none";
-});
+  });
 
 }
 
@@ -52,17 +52,17 @@ function buildList() {
     <h1 class="comp-name">${leagueTitle}</h1>
      </div>
     `
-    let htmlNav =  `<div class="nav-links">
+  let htmlNav = `<div class="nav-links">
   <ul>
     <li class="active"><a href="home.html?league=${leagueID}">Home</a></li>
       <li><a href="topScorers.html?league=${leagueID}">Players Stats</a></li>
     <li class="login">
-      <a href="profile.html"><img src="./../pictures/user.png">Profile</a>
+      <a href="profile.html?league=${leagueID}"><img src="./../pictures/user.png">Profile</a>
       <a href="signIn.html" class="signout">Sign out</a>
     </li>
   </ul>
 </div> `
-document.querySelector('.nav-links').innerHTML = htmlNav;
+  document.querySelector('.nav-links').innerHTML = htmlNav;
   document.querySelector('.comp-title').innerHTML = htmlTitle;
 
   let html = ''
@@ -109,11 +109,11 @@ function favorite() {
   infoTeam()
   let userID = user.uuid
   fetch(`https://web-2-host-football.onrender.com/teams/${userID}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }).then(response => response.json())
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }).then(response => response.json())
     .then(data => {
       favorites = data;
       let htmlString = '';
@@ -121,7 +121,6 @@ function favorite() {
         let teamID = favorite.teamID;
         let teamName = favorite.teamName;
         let teamLogo = favorite.teamLogo;
-        let leagueID = favorite.leagueID;
 
         htmlString += `
         <div class="teams" id="team-${teamID}">
@@ -146,7 +145,7 @@ function favorite() {
       let teamName = s.team.name;
       let teamLogo = s.team.logo;
       let userID = user.uuid
-      let leagueID  = urlParams.get('league');
+      let leagueID = urlParams.get('league');
 
       // Check if the team is already a favorite
       const isFavorite = favorites.some(favorite => favorite.teamID === teamID);
@@ -165,10 +164,10 @@ function favorite() {
             leagueID: leagueID
           })
         }).then(response => response.json())
-      .then(responseData => {
-        favorites.push(responseData);
-              let htmlString = ""
-        htmlString += `
+          .then(responseData => {
+            favorites.push(responseData);
+            let htmlString = ""
+            htmlString += `
 
       <div class="teams" id="team-${teamID}">
         <ul>
@@ -177,10 +176,10 @@ function favorite() {
         </ul>
       </div>`
 
-        document.getElementById('favorite').innerHTML += htmlString;
-        })
+            document.getElementById('favorite').innerHTML += htmlString;
+          })
 
-      }else{
+      } else {
         document.getElementById('already').style.display = "flex";
       };
 
@@ -203,7 +202,7 @@ function infoTeam() {
 }
 
 function deleteTeam(userID) {
-  document.getElementById('favorite').addEventListener('click', function(e) {
+  document.getElementById('favorite').addEventListener('click', function (e) {
     if (e.target.classList.contains('deleteTeam')) {
 
       const teamIDToDelete = e.target.dataset.teamid;
@@ -214,26 +213,26 @@ function deleteTeam(userID) {
           'Content-Type': 'application/json'
         }
       })
-      .then(response => {
-        if (response.ok) {
-          const teamElement = document.getElementById(`team-${teamIDToDelete}`);
-          if (teamElement) {
-            teamElement.remove();
+        .then(response => {
+          if (response.ok) {
+            const teamElement = document.getElementById(`team-${teamIDToDelete}`);
+            if (teamElement) {
+              teamElement.remove();
+            }
+            return response.json();
+          } else {
+            // Si la suppression échoue, traitez l'erreur
+            console.error('Failed to delete team');
           }
-          return response.json();
-        } else {
-          // Si la suppression échoue, traitez l'erreur
-          console.error('Failed to delete team');
-        }
-      })
-      .then(data => {
-        console.log(data.message);
-      })
-      .catch(error => {
-        // Si une erreur survient lors de la requête, traitez-la
-        console.error('Error:', error);
-        // Par exemple, affichez un message d'erreur à l'utilisateur
-      });
+        })
+        .then(data => {
+          console.log(data.message);
+        })
+        .catch(error => {
+          // Si une erreur survient lors de la requête, traitez-la
+          console.error('Error:', error);
+          // Par exemple, affichez un message d'erreur à l'utilisateur
+        });
 
     }
   });

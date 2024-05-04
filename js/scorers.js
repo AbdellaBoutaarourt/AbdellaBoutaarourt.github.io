@@ -1,5 +1,5 @@
 "use strict"
-import{
+import {
   scorers,
   passers
 } from './apis.js'
@@ -10,26 +10,26 @@ const leagueID = urlParams.get('league')
 
 
 window.onload = function getData() {
-  let htmlNav =  `<div class="nav-links">
+  let htmlNav = `<div class="nav-links">
   <ul>
     <li><a href="home.html?league=${leagueID}">Home</a></li>
     <li class="active"><a href="topScorers.html?league=${leagueID}">Players Stats</a></li>
     <li class="login">
-      <a href="profile.html"><img src="./../pictures/user.png">Profile</a>
+      <a href="profile.html?league=${leagueID}"><img src="./../pictures/user.png">Profile</a>
       <a href="signIn.html" class="signout">Sign out</a>
     </li>
   </ul>
 </div> `
-document.querySelector('.nav-links').innerHTML = htmlNav;
+  document.querySelector('.nav-links').innerHTML = htmlNav;
 
   scorers().then(data => {
     console.log(data)
-      let players = data.response
+    let players = data.response
 
-      players.forEach(player => {
-        let htmlString = ""
+    players.forEach(player => {
+      let htmlString = ""
 
-        htmlString += `
+      htmlString += `
           <tr class="player">
               <td class="team">
                   <img src="${player.player.photo}">
@@ -42,21 +42,21 @@ document.querySelector('.nav-links').innerHTML = htmlNav;
               </tr>
 
         `
-        document.getElementById("scorer").innerHTML += htmlString;
-        document.getElementById("titels").style.display = "none";
-      });
+      document.getElementById("scorer").innerHTML += htmlString;
+      document.getElementById("titels").style.display = "none";
+    });
 
-    })
+  })
   assist();
   buttons();
 
 }
 
 function assist() {
-        passers().then(data => {
-        let players = data.response
-        let header = ""
-        header += `
+  passers().then(data => {
+    let players = data.response
+    let header = ""
+    header += `
         <tr class="comp-table-header">
           <th class="player">Player</th>
           <th class="team">Team</th>
@@ -65,12 +65,12 @@ function assist() {
           <th class="goals">Assists</th>
         </tr>
         `
-      document.getElementById("titels").innerHTML += header;
+    document.getElementById("titels").innerHTML += header;
 
-        players.forEach(player => {
-          let html = ""
+    players.forEach(player => {
+      let html = ""
 
-          html += `
+      html += `
             <tr class="player">
                 <td class="team">
                     <img src="${player.player.photo}">
@@ -83,12 +83,12 @@ function assist() {
                 </tr>
 
           `
-          document.getElementById("assist").innerHTML += html;
-          document.getElementById("assist").style.display = "none";
-        });
+      document.getElementById("assist").innerHTML += html;
+      document.getElementById("assist").style.display = "none";
+    });
 
 
-      })
+  })
 
 }
 
@@ -105,7 +105,7 @@ function buttons() {
   })
 
   document.getElementById("scorers").addEventListener("click", () => {
-    document.getElementById('comp-name').innerHTML= "top scorers Premier League"
+    document.getElementById('comp-name').innerHTML = "top scorers Premier League"
     document.getElementById("scorer").style = "none";
     document.getElementById("first-titels").style = "none"
     document.getElementById("titels").style.display = "none";

@@ -1,5 +1,5 @@
 "use strict"
-import{
+import {
   stats,
   squad
 } from './apis.js'
@@ -7,53 +7,68 @@ import{
 
 let playercard = []
 
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const leagueID = urlParams.get('league')
+
 window.onload = function fetchInfo() {
+  let htmlNav = `
+  <ul>
+    <li><a href="home.html?league=${leagueID}">Home</a></li>
+    <li><a href="topScorers.html?league=${leagueID}">Players Stats</a></li>
+    <li class="login">
+      <a href="profile.html?league=${leagueID}"><img src="./../pictures/user.png">Profile</a>
+      <a href="signIn.html" class="signout">Sign out</a>
+    </li>
+  </ul>
+ `
+  document.querySelector('.nav-links').innerHTML = htmlNav;
 
   stats().then(data => {
-      const team = data.response
+    const team = data.response
 
-      let logo = team.team.logo
-      let nameTeam = team.team.name
-      let country = team.league.country
-      let flag  = team.league.flag
-      let league  = team.league.name
-      let logoLeague = team.league.logo
+    let logo = team.team.logo
+    let nameTeam = team.team.name
+    let country = team.league.country
+    let flag = team.league.flag
+    let league = team.league.name
+    let logoLeague = team.league.logo
 
-      let gameAway = team.fixtures.played.away
-      let gameHome = team.fixtures.played.home
-      let gameTotal = team.fixtures.played.total
+    let gameAway = team.fixtures.played.away
+    let gameHome = team.fixtures.played.home
+    let gameTotal = team.fixtures.played.total
 
-      let winsHome = team.fixtures.wins.home
-      let winsAway = team.fixtures.wins.away
-      let winsTotal = team.fixtures.wins.total
+    let winsHome = team.fixtures.wins.home
+    let winsAway = team.fixtures.wins.away
+    let winsTotal = team.fixtures.wins.total
 
-      let loseHome = team.fixtures.loses.home
-      let loseAway = team.fixtures.loses.away
-      let loseTotal = team.fixtures.loses.total
+    let loseHome = team.fixtures.loses.home
+    let loseAway = team.fixtures.loses.away
+    let loseTotal = team.fixtures.loses.total
 
-      let drawHome = team.fixtures.draws.home
-      let drawAway = team.fixtures.draws.away
-      let drawTotal = team.fixtures.draws.total
+    let drawHome = team.fixtures.draws.home
+    let drawAway = team.fixtures.draws.away
+    let drawTotal = team.fixtures.draws.total
 
-      let goalsForHome = team.goals.for.total.home
-      let goalsForAway = team.goals.for.total.away
-      let goalsForTotal = team.goals.for.total.total
+    let goalsForHome = team.goals.for.total.home
+    let goalsForAway = team.goals.for.total.away
+    let goalsForTotal = team.goals.for.total.total
 
-      let goalsAgainstHome = team.goals.against.total.home
-      let goalsAgainstAway = team.goals.against.total.away
-      let goalsAgainstTotal = team.goals.against.total.total
+    let goalsAgainstHome = team.goals.against.total.home
+    let goalsAgainstAway = team.goals.against.total.away
+    let goalsAgainstTotal = team.goals.against.total.total
 
-      let goalsForAverageHome = team.goals.for.average.home
-      let goalsForAverageAway = team.goals.for.average.away
-      let goalsForAverageTotal = team.goals.for.average.total
+    let goalsForAverageHome = team.goals.for.average.home
+    let goalsForAverageAway = team.goals.for.average.away
+    let goalsForAverageTotal = team.goals.for.average.total
 
-      let goalsAgainstAverageHome = team.goals.against.average.home
-      let goalsAgainstAverageAway = team.goals.against.average.away
-      let goalsAgainstAverageTotal = team.goals.against.average.total
+    let goalsAgainstAverageHome = team.goals.against.average.home
+    let goalsAgainstAverageAway = team.goals.against.average.away
+    let goalsAgainstAverageTotal = team.goals.against.average.total
 
-      let htmlString = ""
+    let htmlString = ""
 
-      htmlString += `
+    htmlString += `
     <div class="header">
     <div class="header-image"><img src="${logo}"></div>
       <div class="titleTeam">
@@ -67,12 +82,12 @@ window.onload = function fetchInfo() {
       </div>
 
     `
-      document.getElementById("header").innerHTML += htmlString;
+    document.getElementById("header").innerHTML += htmlString;
 
 
-        let table = ''
+    let table = ''
 
-        table += `
+    table += `
     <tr>
       <th></th>
       <th>HOME</th>
@@ -141,11 +156,11 @@ window.onload = function fetchInfo() {
     </tr>
 
       `
-      document.getElementById('customers').innerHTML = table
+    document.getElementById('customers').innerHTML = table
 
 
 
-    })
+  })
   players()
 
   buttons()
@@ -155,116 +170,116 @@ function goBack() {
 }
 
 function players() {
-    squad().then(data => {
-      console.log(data)
-      let cards = data.response[0].players
+  squad().then(data => {
+    console.log(data)
+    let cards = data.response[0].players
 
-      cards.forEach(card => {
-        playercard.push(card)
-      })
-      document.getElementById("squad").addEventListener("click", () => {
-
-        let goalkeepers = ''
-        let midfielders = ''
-        let attackers = ''
-        let defenders = ''
-
-
-        for (let card of playercard ) {
-
-          if (card.position === "Goalkeeper" && card.number) {
-
-            goalkeepers += `
-              <div class="card">
-              <div class = card-image>
-              <img src="${card.photo}" alt="">
-              </div>
-              <div class="card-info">
-                <div class="cardname"> ${card.name}</div>
-                <div class="cardage"> age: ${card.age} </div>
-                <div class id="cardnumber"> ${card.number} </div>
-              </div>
-            </div>
-            </div> `
-          }
-          document.getElementById('Goalkeepers').innerHTML = goalkeepers;
-
-          if (card.position === "Defender" && card.number) {
-
-            defenders += `
-              <div class="card">
-              <div class = card-image>
-              <img src="${card.photo}" alt="">
-              </div>
-              <div class="card-info">
-                <div class="cardname"> ${card.name}</div>
-                <div class="cardage"> age: ${card.age} </div>
-                <div class id="cardnumber"> ${card.number} </div>
-              </div>
-            </div>
-            </div> `
-          }
-          document.getElementById('Defenders').innerHTML = defenders;
-
-          if (card.position === "Midfielder" && card.number) {
-
-            midfielders += `
-              <div class="card">
-              <div class = card-image>
-              <img src="${card.photo}" alt="">
-              </div>
-              <div class="card-info">
-                <div class="cardname"> ${card.name}</div>
-                <div class ="cardage"> age: ${card.age} </div>
-                <div class id="cardnumber"> ${card.number} </div>
-              </div>
-            </div>
-            </div> `
-          }
-          document.getElementById('Midfielders').innerHTML = midfielders;
-
-          if (card.position === "Attacker" && card.number) {
-
-            attackers += `
-              <div class="card">
-              <div class = card-image>
-              <img src="${card.photo}" alt="">
-              </div>
-              <div class="card-info">
-                <div class="cardname"> ${card.name}</div>
-                <div class ="cardage"> age: ${card.age} </div>
-                <div class id="cardnumber"> ${card.number} </div>
-              </div>
-            </div>
-            </div> `
-          }
-          document.getElementById('Attackers').innerHTML = attackers;
-
-
-
-
-        }
-      })
-
+    cards.forEach(card => {
+      playercard.push(card)
     })
-    document.querySelector('a[href="#"]').addEventListener("click", goBack);
+    document.getElementById("squad").addEventListener("click", () => {
+
+      let goalkeepers = ''
+      let midfielders = ''
+      let attackers = ''
+      let defenders = ''
+
+
+      for (let card of playercard) {
+
+        if (card.position === "Goalkeeper" && card.number) {
+
+          goalkeepers += `
+              <div class="card">
+              <div class = card-image>
+              <img src="${card.photo}" alt="">
+              </div>
+              <div class="card-info">
+                <div class="cardname"> ${card.name}</div>
+                <div class="cardage"> age: ${card.age} </div>
+                <div class id="cardnumber"> ${card.number} </div>
+              </div>
+            </div>
+            </div> `
+        }
+        document.getElementById('Goalkeepers').innerHTML = goalkeepers;
+
+        if (card.position === "Defender" && card.number) {
+
+          defenders += `
+              <div class="card">
+              <div class = card-image>
+              <img src="${card.photo}" alt="">
+              </div>
+              <div class="card-info">
+                <div class="cardname"> ${card.name}</div>
+                <div class="cardage"> age: ${card.age} </div>
+                <div class id="cardnumber"> ${card.number} </div>
+              </div>
+            </div>
+            </div> `
+        }
+        document.getElementById('Defenders').innerHTML = defenders;
+
+        if (card.position === "Midfielder" && card.number) {
+
+          midfielders += `
+              <div class="card">
+              <div class = card-image>
+              <img src="${card.photo}" alt="">
+              </div>
+              <div class="card-info">
+                <div class="cardname"> ${card.name}</div>
+                <div class ="cardage"> age: ${card.age} </div>
+                <div class id="cardnumber"> ${card.number} </div>
+              </div>
+            </div>
+            </div> `
+        }
+        document.getElementById('Midfielders').innerHTML = midfielders;
+
+        if (card.position === "Attacker" && card.number) {
+
+          attackers += `
+              <div class="card">
+              <div class = card-image>
+              <img src="${card.photo}" alt="">
+              </div>
+              <div class="card-info">
+                <div class="cardname"> ${card.name}</div>
+                <div class ="cardage"> age: ${card.age} </div>
+                <div class id="cardnumber"> ${card.number} </div>
+              </div>
+            </div>
+            </div> `
+        }
+        document.getElementById('Attackers').innerHTML = attackers;
+
+
+
+
+      }
+    })
+
+  })
+  document.querySelector('a[href="#"]').addEventListener("click", goBack);
 
 }
 
 
-function buttons (){
-document.getElementById("Statistics").addEventListener("click", () => {
+function buttons() {
+  document.getElementById("Statistics").addEventListener("click", () => {
     document.getElementById("players").style.display = "none";
     document.getElementById("customers").style.display = "flex";
-    document.getElementById('squads').style.border ="none"
-    document.getElementById('Statistics').style.border ="solid #ffffff 3px"
+    document.getElementById('squads').style.border = "none"
+    document.getElementById('Statistics').style.border = "solid #ffffff 3px"
   })
 
   document.getElementById("squad").addEventListener("click", () => {
     document.getElementById("players").style.display = "flex";
     document.getElementById("customers").style.display = "none";
-    document.getElementById('squads').style.border ="solid #ffffff 3px"
-    document.getElementById('Statistics').style.border ="none"
+    document.getElementById('squads').style.border = "solid #ffffff 3px"
+    document.getElementById('Statistics').style.border = "none"
 
   })
 
