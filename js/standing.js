@@ -208,7 +208,7 @@ function deleteTeam(userID) {
 
       const teamIDToDelete = e.target.dataset.teamid;
 
-      fetch(`http://localhost:1338/teams/${userID}/${teamIDToDelete}`, {
+      fetch(`https://web-2-host-football.onrender.com/teams/${userID}/${teamIDToDelete}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json'
