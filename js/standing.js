@@ -124,11 +124,11 @@ function favorite() {
         let leagueID = favorite.leagueID;
 
         htmlString += `
-        <div class="teams">
-          <ul>
+        <div class="teams" id="team-${teamID}">
+        <ul>
             <li><img src="${teamLogo}"> <a href="./teamInfo.html?league=${leagueID}&id=${teamID}">${teamName}</a></li>
-            <i class="fa fa-trash deleteTeam" aria-hidden="true"></i>
-          </ul>
+            <i class="fa fa-trash deleteTeam" aria-hidden="true" data-teamid="${teamID}"></i>
+            </ul>
         </div>`;
       });
 
@@ -170,23 +170,24 @@ function favorite() {
               let htmlString = ""
         htmlString += `
 
-      <div class="teams">
+      <div class="teams" id="team-${teamID}">
         <ul>
           <li><img src="${teamLogo}">  <a href="./teamInfo.html?id=${teamID}">${teamName}</a> </li>
+          <i class="fa fa-trash deleteTeam" aria-hidden="true" data-teamid="${teamID}"></i>
         </ul>
       </div>`
 
         document.getElementById('favorite').innerHTML += htmlString;
-        window.location.reload();
         })
 
       }else{
-        console.log("already in favorite")
         document.getElementById('already').style.display = "flex";
       };
 
     })
   })
+  deleteTeam(userID)
+
 }
 
 function infoTeam() {
@@ -199,4 +200,42 @@ function infoTeam() {
       window.location.href = `./teamInfo.html?league=${leagueID}&id=${teamID}`;
     })
   })
+}
+
+function deleteTeam(userID) {
+  document.getElementById('favorite').addEventListener('click', function(e) {
+    if (e.target.classList.contains('deleteTeam')) {
+
+      const teamIDToDelete = e.target.dataset.teamid;
+
+      fetch(`http://localhost:1338/teams/${userID}/${teamIDToDelete}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(response => {
+        if (response.ok) {
+          const teamElement = document.getElementById(`team-${teamIDToDelete}`);
+          if (teamElement) {
+            teamElement.remove();
+          }
+          return response.json();
+        } else {
+          // Si la suppression échoue, traitez l'erreur
+          console.error('Failed to delete team');
+        }
+      })
+      .then(data => {
+        console.log(data.message);
+      })
+      .catch(error => {
+        // Si une erreur survient lors de la requête, traitez-la
+        console.error('Error:', error);
+        // Par exemple, affichez un message d'erreur à l'utilisateur
+      });
+
+    }
+  });
+
 }
