@@ -12,22 +12,22 @@ document.getElementById('signUpForm').addEventListener('submit', event => {
     user.password2 = document.getElementById("passwordRegister2").value
 
     //Check Password
-    if(user.password == user.password2){
+    if (user.password == user.password2) {
         //register the user
         fetchSign("https://web-2-host-football.onrender.com/users/register", "POST", user).then(result => {
-            sessionStorage.setItem('user',JSON.stringify(result.data))
+            sessionStorage.setItem('user', JSON.stringify(result.data))
 
-        if (result.data) {
-            window.location.href = "./home.html";
-            alert(result.message)
+            if (result.data) {
+                window.location.href = "./choice.html";
+                alert(result.message)
 
-        }else {
-            document.getElementById('error').innerHTML = result.message
+            } else {
+                document.getElementById('error').innerHTML = result.message
 
-        };
+            };
 
-    })
-    }else{
+        })
+    } else {
         document.getElementById('errorPassword').style.display = 'block'
     }
 
