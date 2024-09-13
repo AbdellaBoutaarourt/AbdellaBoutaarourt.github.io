@@ -88,11 +88,11 @@ function buildList() {
         <td class="difference">${s.goalsDiff}</td>
         <td class="form">
 
-        <li class="${s.form[0]}"><a>${s.form[0]}</a></li>
-        <li class="${s.form[1]}"><a>${s.form[1]}</a></li>
-        <li class="${s.form[2]}"><a>${s.form[2]}</a></li>
-        <li class="${s.form[3]}"><a>${s.form[3]}</a></li>
-        <li class="${s.form[4]}"><a>${s.form[4]}</a></li>
+    ${s.form[0] ? `<li class="${s.form[0]}"><a>${s.form[0]}</a></li>` : ''}
+    ${s.form[1] ? `<li class="${s.form[1]}"><a>${s.form[1]}</a></li>` : ''}
+    ${s.form[2] ? `<li class="${s.form[2]}"><a>${s.form[2]}</a></li>` : ''}
+    ${s.form[3] ? `<li class="${s.form[3]}"><a>${s.form[3]}</a></li>` : ''}
+    ${s.form[4] ? `<li class="${s.form[4]}"><a>${s.form[4]}</a></li>` : ''}
 
         </td>
         <td class="points">${s.points} </td>
